@@ -8,6 +8,9 @@ public class PlatformController : RaycastController
     public Vector3 move;
     public LayerMask passengerMask;
 
+    public Vector3[] localWaypoints;
+    Vector3[] globalWaypoints; 
+
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
 
@@ -15,6 +18,12 @@ public class PlatformController : RaycastController
     public override void Start()
     {
         base.Start();
+
+        globalWaypoints = new Vector3[localWaypoints.Length];
+        for (int i = 0; i < localWaypoints.Length; i++)
+        {
+            globalWaypoints[i] = localWaypoints[i] + transform.position;
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +44,7 @@ public class PlatformController : RaycastController
     {
         foreach (PassengerMovement passenger in passengerMovement)
         {
-            if (passengerDictionary.ContainsKey(passenger.transform))
+            if (!passengerDictionary.ContainsKey(passenger.transform))
             {
                 passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<Controller2D>());
             }
@@ -104,7 +113,7 @@ public class PlatformController : RaycastController
             }
         }
 
-        if(directionY == -1 || velocity.y == 0 && velocity.x != 0)
+        if (directionY == -1 || velocity.y == 0 && velocity.x != 0)
         {
             float rayLength = skinWidth * 2;
 
@@ -142,7 +151,24 @@ public class PlatformController : RaycastController
             velocity = _velocity;
             standingOnPlatform = _standingOnPlatform;
             moveBeforePlatform = _moveBeforePlatform;
+        }
+    }
 
+    private void OnDrawGizmos() //Debugging waypoints of platforms
+    {
+        if(localWaypoints != null)
+        {
+            Gizmos.color = Color.red;
+            float size = .3f;
+
+            for (int i =0; i< localWaypoints.Length; i++)
+            {
+                Vector3 globalWaypointPos = (Application.isPlaying) ? globalWaypoints[i] : localWaypoints[i] + transform.position;
+
+                Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
+                Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
+
+            }
         }
     }
 }
