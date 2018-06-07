@@ -19,7 +19,6 @@ public class Controller2D : RaycastController
         collisions.Reset();
         collisions.velocityOld = velocity;
 
-
         if (velocity.y < 0)
             DescendSlope(ref velocity);
         if (velocity.x != 0)
@@ -46,7 +45,7 @@ public class Controller2D : RaycastController
             rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-            Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+            //Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red); //Gravitation debugging
 
             if (hit)
             {
