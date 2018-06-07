@@ -41,31 +41,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Test
-        float h = Input.GetAxis("Horizontal");
-        rb2d.AddForce(Vector2.right * Speed * h);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*if (controller.collisions.above || controller.collisions.below) // Character falls through..
+        if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
         }
@@ -82,6 +58,5 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-        */
     }
 }

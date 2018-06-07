@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 495228616}
   - component: {fileID: 495228618}
   - component: {fileID: 495228617}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GrassPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   horizontalRayCount: 4
   verticalRayCount: 4
   horizontalRaySpacing: 0
@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: 665350277}
   - component: {fileID: 665350279}
   - component: {fileID: 665350278}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GrassPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 1385458877}
   - component: {fileID: 1385458879}
   - component: {fileID: 1385458878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GrassPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
