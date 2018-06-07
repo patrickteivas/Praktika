@@ -42,7 +42,7 @@ public class Controller2D : RaycastController
         float directionX = collisions.faceDir;
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
 
-        if(Mathf.Abs(velocity.x) < skinWidth)
+        if (Mathf.Abs(velocity.x) < skinWidth)
             rayLength = 2 * skinWidth;
 
         for (int i = 0; i < horizontalRayCount; i++)
@@ -127,7 +127,7 @@ public class Controller2D : RaycastController
                 rayOrigin = ((directionY == -1) ? rayCastOrigins.bottomLeft : rayCastOrigins.bottomRight) + Vector2.up * velocity.y;
                 hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-                if(hit)
+                if (hit)
                 {
                     float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 
