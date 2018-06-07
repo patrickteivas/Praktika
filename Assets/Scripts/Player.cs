@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    Animator anim;
+
     float moveSpeed = 8;
     float jumpHeight = 3;
     float timeToJumpApex = .3f;
@@ -22,15 +24,46 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        anim = GetComponent<Animator>();
         controller = GetComponent<Controller2D>();
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.RightArrow)) // Run
+        {
+            anim.SetInteger("State", 1);
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            anim.SetInteger("State", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("State", 1);
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("State", 0);
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow)) // Jump
+        {
+            anim.SetInteger("State", 2);
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            anim.SetInteger("State", 0);
+        }
+
+
+
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
