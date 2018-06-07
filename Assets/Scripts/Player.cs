@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         controller = GetComponent<Controller2D>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
