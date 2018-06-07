@@ -6,16 +6,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float Speed = 50f;
-    public float jumpPower = 150f;
-
-    public bool grounded;
-
-    private Rigidbody2D rb2d;
-
-    float moveSpeed = 6;
-    float jumpHeight = 8;
-    float timeToJumpApex = .6f;
+    float moveSpeed = 8;
+    float jumpHeight = 3;
+    float timeToJumpApex = .3f;
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
 
@@ -29,9 +22,6 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-
-
         controller = GetComponent<Controller2D>();
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
