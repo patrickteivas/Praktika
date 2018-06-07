@@ -6,13 +6,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float Speed = 50f;
-    public float jumpPower = 150f;
-
-    public bool grounded;
-
-    private Rigidbody2D rb2d;
-
     float moveSpeed = 6;
     float jumpHeight = 8;
     float timeToJumpApex = .6f;
@@ -29,9 +22,6 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
-
-
         controller = GetComponent<Controller2D>();
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -41,35 +31,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Test
-        float h = Input.GetAxis("Horizontal");
-        rb2d.AddForce(Vector2.right * Speed * h);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*if (controller.collisions.above || controller.collisions.below) // Character falls through..
+        if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
         }
-        
+
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && controller.collisions.below)
@@ -82,6 +48,5 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-        */
     }
 }
