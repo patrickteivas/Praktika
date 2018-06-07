@@ -41,26 +41,26 @@ public class Player : MonoBehaviour
         {
             anim.SetInteger("State", 1);
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             anim.SetInteger("State", 0);
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             anim.SetInteger("State", 1);
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             anim.SetInteger("State", 0);
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow)) // Jump
+        else if (Input.GetKeyDown(KeyCode.UpArrow)) // Jump
         {
             anim.SetInteger("State", 2);
         }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            anim.SetInteger("State", 0);
-        }
+        //if (Input.GetKeyUp(KeyCode.UpArrow))
+        //{
+        //    anim.SetInteger("State", 0);
+        //}
 
 
 
