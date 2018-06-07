@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlatformController : RaycastController
 {
-
-    public Vector3 move;
     public LayerMask passengerMask;
 
     public Vector3[] localWaypoints;
-    Vector3[] globalWaypoints; 
+    Vector3[] globalWaypoints;
+
+    public float speed;
+    int fromWaypointIndex;
+    float percentBetweenWaypoints;
 
     List<PassengerMovement> passengerMovement;
     Dictionary<Transform, Controller2D> passengerDictionary = new Dictionary<Transform, Controller2D>();
@@ -31,13 +33,35 @@ public class PlatformController : RaycastController
     {
         UpdateRayCastOrigins();
 
-        Vector3 velocity = move * Time.deltaTime;
+        Vector3 velocity = CalculatePlatformMovement();
 
         CalculatePassengerMovement(velocity);
 
         MovePassengers(true);
         transform.Translate(velocity);
         MovePassengers(false);
+    }
+
+    Vector3 CalculatePlatformMovement()
+    {
+        int toWaypointIndex = fromWaypointIndex + 1;
+        float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
+        percentBetweenWaypoints += Time.deltaTime * speed / distanceBetweenWaypoints;
+
+        Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
+
+        if(percentBetweenWaypoints >= 1)
+        {
+            percentBetweenWaypoints = 0;
+            fromWaypointIndex++;
+            if(fromWaypointIndex >= globalWaypoints.Length-1)
+            {
+                fromWaypointIndex = 0;
+                System.Array.Reverse(globalWaypoints);
+            }
+        }
+
+        return newPos - transform.position;
     }
 
     void MovePassengers(bool beforeMovePlatform)
@@ -167,7 +191,6 @@ public class PlatformController : RaycastController
 
                 Gizmos.DrawLine(globalWaypointPos - Vector3.up * size, globalWaypointPos + Vector3.up * size);
                 Gizmos.DrawLine(globalWaypointPos - Vector3.left * size, globalWaypointPos + Vector3.left * size);
-
             }
         }
     }

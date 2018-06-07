@@ -19,7 +19,6 @@ public class Controller2D : RaycastController
         collisions.Reset();
         collisions.velocityOld = velocity;
 
-
         if (velocity.y < 0)
             DescendSlope(ref velocity);
         if (velocity.x != 0)
