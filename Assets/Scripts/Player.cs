@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    Animator anim;
     GameObject player;
 
     float moveSpeed = 8;
@@ -45,7 +46,11 @@ public class Player : MonoBehaviour
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         jumpVelocity = Mathf.Abs(gravity * timeToJumpApex);
+
+        anim = GetComponent<Animator>();
+        controller = GetComponent<Controller2D>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -88,9 +93,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
-            if(wallSliding)
+            if (wallSliding)
             {
-                if(wallDirX == input.x)
+                if (wallDirX == input.x)
                 {
                     velocity.x = -wallDirX * wallJumpClimb.x;
                     velocity.y = wallJumpClimb.y;
@@ -106,8 +111,29 @@ public class Player : MonoBehaviour
                     velocity.y = wallLeap.y;
                 }
             }
-            if(controller.collisions.below)
+            if (controller.collisions.below)
                 velocity.y = jumpVelocity;
+        }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow)) // Run
+        {
+            anim.SetInteger("State", 1);
+        }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            anim.SetInteger("State", 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("State", 1);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            anim.SetInteger("State", 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow)) // Jump
+        {
+            anim.SetInteger("State", 2);
         }
 
         velocity.y += gravity * Time.deltaTime;
