@@ -39,7 +39,7 @@ public class PlatformController : RaycastController
 
         MovePassengers(true);
         transform.Translate(velocity);
-        MovePassengers(false);
+        MovePassengers(false);//
     }
 
     Vector3 CalculatePlatformMovement()
