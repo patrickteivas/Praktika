@@ -13,6 +13,9 @@ public class CameraMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        smoothTimeX = 0.1f;
+        smoothTimeY = 0.1f;
+
         player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
