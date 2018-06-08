@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.y <= -2)
+        if (player.transform.position.y <= -4.5)
         {
             player.transform.position = new Vector2(-6, 3);
         }
@@ -135,10 +135,6 @@ public class Player : MonoBehaviour
         {
             anim.SetInteger("State", 2);
         }
-        //if (Input.GetKeyUp(KeyCode.UpArrow))
-        //{
-        //    anim.SetInteger("State", 0);
-        //}
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
