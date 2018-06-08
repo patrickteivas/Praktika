@@ -115,26 +115,16 @@ public class Player : MonoBehaviour
                 velocity.y = jumpVelocity;
         }
 
-        if (Input.GetKeyDown(KeyCode.RightArrow)) // Run
-        {
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)) // Run
             anim.SetInteger("State", 1);
-        }
-        else if (Input.GetKeyUp(KeyCode.RightArrow))
-        {
+        else if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.D))
             anim.SetInteger("State", 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             anim.SetInteger("State", 1);
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftArrow))
-        {
+        else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
             anim.SetInteger("State", 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow)) // Jump
-        {
+        else if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) // Jump
             anim.SetInteger("State", 2);
-        }
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
