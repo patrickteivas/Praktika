@@ -50,11 +50,11 @@ public class PlatformController : RaycastController
 
         Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], percentBetweenWaypoints);
 
-        if (percentBetweenWaypoints >= 1)
+        if(percentBetweenWaypoints >= 1)
         {
             percentBetweenWaypoints = 0;
             fromWaypointIndex++;
-            if (fromWaypointIndex >= globalWaypoints.Length - 1)
+            if(fromWaypointIndex >= globalWaypoints.Length-1)
             {
                 fromWaypointIndex = 0;
                 System.Array.Reverse(globalWaypoints);
@@ -180,12 +180,12 @@ public class PlatformController : RaycastController
 
     private void OnDrawGizmos() //Debugging waypoints of platforms
     {
-        if (localWaypoints != null)
+        if(localWaypoints != null)
         {
             Gizmos.color = Color.red;
             float size = .3f;
 
-            for (int i = 0; i < localWaypoints.Length; i++)
+            for (int i =0; i< localWaypoints.Length; i++)
             {
                 Vector3 globalWaypointPos = (Application.isPlaying) ? globalWaypoints[i] : localWaypoints[i] + transform.position;
 
