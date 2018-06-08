@@ -6,17 +6,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-<<<<<<< HEAD
-    float moveSpeed = 6;
-    float jumpHeight = 8;
-    float timeToJumpApex = .6f;
-=======
-    Animator anim;
-
     float moveSpeed = 8;
     float jumpHeight = 3;
     float timeToJumpApex = .3f;
->>>>>>> Kenno
+    Animator anim;
+
     float accelerationTimeAirborne = .2f;
     float accelerationTimeGrounded = .1f;
 
@@ -30,10 +24,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-<<<<<<< HEAD
-=======
         anim = GetComponent<Animator>();
->>>>>>> Kenno
         controller = GetComponent<Controller2D>();
 
         gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -45,9 +36,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-=======
-
         if (Input.GetKeyDown(KeyCode.RightArrow)) // Run
         {
             anim.SetInteger("State", 1);
@@ -68,14 +56,7 @@ public class Player : MonoBehaviour
         {
             anim.SetInteger("State", 2);
         }
-        //if (Input.GetKeyUp(KeyCode.UpArrow))
-        //{
-        //    anim.SetInteger("State", 0);
-        //}
 
-
-
->>>>>>> Kenno
         if (controller.collisions.above || controller.collisions.below)
         {
             velocity.y = 0;
